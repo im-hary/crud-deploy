@@ -9,7 +9,7 @@ app.use(express.json())
 mongosh.connect("mongodb://localhost:27017/crud")
 app.post("/createUser", (req, res) => {
     UserModel.create(req.body)
-        .then(users => res.json(users))
+        .then(users => res.json(users)
         .catch(err => res.json(err))
 })
 app.get("/", (req, res) => {
