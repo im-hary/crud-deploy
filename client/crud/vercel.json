@@ -1,8 +1,8 @@
 {
-    "rewrites":[
-        {
-            "source":"/(.*)",
-            "destinatino":"/"
-        }
+    "redirects": [
+      {
+        "source": "/(.*)",
+        "destination": "/"
+      }
     ]
-}
+  }

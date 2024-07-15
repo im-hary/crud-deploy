@@ -2,14 +2,34 @@
 const express = require('express')
 const mongosh = require('mongoose')
 const cors = require('cors')
+require('dotenv').config()
 const app = express()
 const UserModel = require('./models/users')
-app.use(cors())
+app.use(cors(
+    {
+        "origin":process.env.APPLICATION_URL,
+        "methods":["GET","POST","PUT","DELETE"],
+        "credentials":true
+    }
+))
 app.use(express.json())
-mongosh.connect("mongodb://localhost:27017/crud")
+const connectDB=async()=>{
+    try{
+        await mongosh.connect(process.env.MONGODB_URL,{
+            useNewUrlParser:true,
+            useUnifiedTopology:true
+        });
+        console.log('Mongodb connected....')
+
+    }
+    catch(err){
+        console.log(err);
+        process.exit(1);
+    }
+}
 app.post("/createUser", (req, res) => {
     UserModel.create(req.body)
-        .then(users => res.json(users)
+        .then(users => res.json(users))
         .catch(err => res.json(err))
 })
 app.get("/", (req, res) => {
