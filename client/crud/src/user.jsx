@@ -10,12 +10,12 @@ function Users() {
     const [filterusers, setFilterUsers] = useState([])
     const [inputValue, setInput] = useState('')
     useEffect(() => {
-        axios.get('http://localhost:3001')
+        axios.get('https://crud-server-seven-taupe.vercel.app')
             .then(res => { setUsers(res.data); setFilterUsers(res.data) })
             .catch(err => console.log(err))
     }, [])
     const handleDelete = (id) => {
-        axios.delete('http://localhost:3001/deleteUser/' + id)
+        axios.delete('https://crud-server-seven-taupe.vercel.app/deleteUser/' + id)
             .then(res => {
                 console.log(res)
                 window.location.reload()
