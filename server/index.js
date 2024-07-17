@@ -27,6 +27,7 @@ const connectDB=async()=>{
         process.exit(1);
     }
 }
+connectDB()
 app.post("/createUser", (req, res) => {
     UserModel.create(req.body)
         .then(users => res.json(users))
