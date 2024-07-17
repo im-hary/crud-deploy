@@ -35,8 +35,8 @@ function Users() {
         setFilterUsers(data)
     }
     return (
-        <div className="d-flex vh-100 bg-secondary justify-content-center align-items-start ">
-            <div id="bg" className="w-50 bg-white rounded p-3">
+        <div className="d-flex vh-100  justify-content-center align-items-start" id="div">
+            <div id="bg" className="w-60  rounded p-3">
                 <div className="d-flex"><Link to="/create" id="link" className="btn btn-primary m-2">Add+</Link>
                     <div class="input-group ">
                         <input type="text" class="form-control m-2" placeholder="Search this blog" onChange={(e) => setInput(e.target.value)}></input>
