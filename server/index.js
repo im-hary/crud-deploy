@@ -5,13 +5,21 @@ const cors = require('cors')
 require('dotenv').config()
 const app = express()
 const UserModel = require('./models/users')
-app.use(cors(
-    {
-        "origin":process.env.APPLICATION_URL,
-        "methods":["GET","POST","PUT","DELETE"],
-        "credentials":true
+const allowedOrigins = ['https://crud-frontend-weld.vercel.app'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
     }
-))
+  },
+  optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json())
 const connectDB=async()=>{
     try{
